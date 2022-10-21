@@ -1,0 +1,133 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.ユーザー画面
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+
+
+
+<style>
+
+    .card > .content-list > li {
+        padding: 10px 16px;
+    }
+
+    .content-list.members-list li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .members-list {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0 !important;
+    }
+
+    .list-item-name {
+        display: flex;
+        align-items: center;
+    }
+
+    .s60.avatar {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .member-controls {
+        display: flex;
+        align-items: center;
+    }
+
+    .userState{
+        margin:5px;
+    }
+
+    .prepend-left-5 {
+        margin-left: 5px;
+    }
+
+
+    .badge-success {
+        padding: 4px 5px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        display: inline-block;
+        color: #fff;
+        background-color: #1aaa55;
+    }
+</style>
+
+<script>
+    function MoveToAddUser() {
+        location.href = location.protocol + "//" + location.host + "/Users/Create";
+    }
+
+    function MoveToDeleteUser(e) {
+        var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Users/Delete?id=" + id;
+    }
+</script>
+
+
+    <div class="container-fluid topSpace">
+        <div class="column" style="margin-bottom:0.5rem;">
+            <h3 class="MenuTitle">プロジェクトメンバー</h3>
+            <div style="display: flex; justify-content:space-between;">
+                <p class="defaultTxt">メンバーは管理者のみ追加・削除することができます。</p>
+                @if (Model.LoginedUser.ADMINFLG == "1")
+                {
+                    <button class="btnDefault sysBaseColor" onclick="MoveToAddUser()" style="max-width:180px; ">
+                        <i class="fas fa-user-plus">
+                            ユーザー追加
+                        </i>
+                    </button>
+                }
+                </div>
+        </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="flex-project-title">
+                        メンバー一覧
+                    </span>
+                    <span class="badge badge-pill">@Model.Users.Count members in this project</span>
+
+                </div>
+                <ul class="content-list members-list">
+                    @if (Model.Users.Any())
+                    {
+                        foreach (var member in Model.Users)
+                        {
+                            <li class="group_member member">
+                                <span class="list-item-name">
+                                    <img src=@Url.Action( "show", "Image", new { id =member.ID} ) class="avatar s60 js-lazy-loaded" />
+                                    @Html.ActionLink(member.FULLNAME, "Detail", new { id = member.ID }, new { @style = "color:#000000 !important;", @class = "userState" })
+                                    @{
+                                        string userRole = member.ADMINFLG == "1" ? "(管理者)" : "(利用者)";
+                                        <span class="member-access-text userState">@userRole</span>
+                                    }
+                                    @if (member.ID == Model.LoginedUser.ID)
+                                    {
+                                        <span class="badge badge-success prepend-left-5">It's you</span>
+                                    }
+                                </span>
+                                <div class="controls member-controls">
+                                    @if (Model.LoginedUser.ADMINFLG == "1")
+                                    {
+                                        <button class="btn deleteBtn" id="deleteBtn" onclick="MoveToDeleteUser(this)" value="@member.ID">
+                                            <i class="fas fa-trash-alt">
+                                                削除
+                                            </i>
+                                        </button>}
+                                </div>
+                                </li>
+                                    }
+                    }
+                </ul>
+            </div>
+    </div>

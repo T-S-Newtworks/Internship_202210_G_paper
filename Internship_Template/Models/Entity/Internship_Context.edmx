@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_ANSWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="QUESTIONNAIREID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="QUESTIONID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="USERID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="OPTION" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="T_CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+            <PropertyRef Name="SUB_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="SUB_ID" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="REGISTDATE" Type="date" />
+        </EntityType>
+        <EntityType Name="T_GIFTITEMLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="50" />
+          <Property Name="REGISTUSERID" Type="varchar2" MaxLength="5" />
+          <Property Name="CATEGORYID" Type="varchar2" MaxLength="5" />
+          <Property Name="SUBCATEGORYID" Type="varchar2" MaxLength="5" />
+          <Property Name="ISDONE" Type="varchar2" MaxLength="1" />
+          <Property Name="GIVEID" Type="varchar2" MaxLength="5" />
+          <Property Name="DETAILS" Type="varchar2" MaxLength="5" />
+          <Property Name="PASS" Type="varchar2" MaxLength="200" />
+          <Property Name="EXPLANATION" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="T_GROUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="GROUPNAME" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="T_HOWTOGIVE">
+          <Key>
+            <PropertyRef Name="GIVE_ID" />
+          </Key>
+          <Property Name="GIVE_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_LOGIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_OPINION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="USERID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TEXT" Type="varchar2" MaxLength="500" />
+          <Property Name="GOOD" Type="number" Precision="38" Scale="0" />
+          <Property Name="BAD" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="T_QUESTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="QUESTIONNAIREID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="CONTENT" Type="varchar2" MaxLength="200" />
+          <Property Name="OPTION1" Type="varchar2" MaxLength="100" />
+          <Property Name="OPTION2" Type="varchar2" MaxLength="100" />
+          <Property Name="OPTION3" Type="varchar2" MaxLength="100" />
+          <Property Name="OPTION4" Type="varchar2" MaxLength="100" />
+          <Property Name="OPTION5" Type="varchar2" MaxLength="100" />
+          <Property Name="IMAGE1" Type="blob" />
+          <Property Name="IMAGE2" Type="blob" />
+          <Property Name="IMAGE3" Type="blob" />
+          <Property Name="IMAGE4" Type="blob" />
+          <Property Name="IMAGE5" Type="blob" />
+        </EntityType>
+        <EntityType Name="T_QUESTIONNAIRE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="100" />
+          <Property Name="TIMELIMIT" Type="date" />
+          <Property Name="GENRE" Type="varchar2" MaxLength="50" />
+          <Property Name="CREATEID" Type="varchar2" MaxLength="10" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="ANSWER" Type="varchar2" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="T_SUBCATEGORY">
+          <Key>
+            <PropertyRef Name="SUBCATEGORY_ID" />
+          </Key>
+          <Property Name="SUBCATEGORY_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="REGISTDATE" Type="date" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'INTERNSHIP.T_TEST' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="T_TEST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SCORE" Type="number" Precision="38" Scale="0" />
+          <Property Name="GRADE" Type="varchar2" MaxLength="20" />
+          <Property Name="TANABE" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'INTERNSHIP.T_TEST2' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="T_TEST2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="SCORE2" Type="number" Precision="5" Scale="0" />
+          <Property Name="GRADE2" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="T_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="FULLNAME" Type="varchar2" MaxLength="50" />
+          <Property Name="ICON" Type="blob" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="100" />
+          <Property Name="ADMINFLG" Type="varchar2" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="SYS_C0045609">
+          <End Role="T_USER" Type="Self.T_USER" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_LOGIN" Type="Self.T_LOGIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_LOGIN">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="T_ANSWER" EntityType="Self.T_ANSWER" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_CATEGORY" EntityType="Self.T_CATEGORY" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_GIFTITEMLIST" EntityType="Self.T_GIFTITEMLIST" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_GROUP" EntityType="Self.T_GROUP" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_HOWTOGIVE" EntityType="Self.T_HOWTOGIVE" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_LOGIN" EntityType="Self.T_LOGIN" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_OPINION" EntityType="Self.T_OPINION" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_QUESTION" EntityType="Self.T_QUESTION" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_QUESTIONNAIRE" EntityType="Self.T_QUESTIONNAIRE" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_SUBCATEGORY" EntityType="Self.T_SUBCATEGORY" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_USER" EntityType="Self.T_USER" Schema="INTERNSHIP" store:Type="Tables" />
+          <EntitySet Name="T_TEST" EntityType="Self.T_TEST" store:Type="Tables" store:Schema="INTERNSHIP">
+            <DefiningQuery>SELECT 
+"T_TEST"."ID" AS "ID", 
+"T_TEST"."SCORE" AS "SCORE", 
+"T_TEST"."GRADE" AS "GRADE", 
+"T_TEST"."TANABE" AS "TANABE"
+FROM "INTERNSHIP"."T_TEST" "T_TEST"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T_TEST2" EntityType="Self.T_TEST2" store:Type="Tables" store:Schema="INTERNSHIP">
+            <DefiningQuery>SELECT 
+"T_TEST2"."ID" AS "ID", 
+"T_TEST2"."SCORE2" AS "SCORE2", 
+"T_TEST2"."GRADE2" AS "GRADE2"
+FROM "INTERNSHIP"."T_TEST2" "T_TEST2"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="SYS_C0045609" Association="Self.SYS_C0045609">
+            <End Role="T_USER" EntitySet="T_USER" />
+            <End Role="T_LOGIN" EntitySet="T_LOGIN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_LOGIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_USER" Relationship="Self.SYS_C0045609" FromRole="T_LOGIN" ToRole="T_USER" />
+        </EntityType>
+        <EntityType Name="T_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FULLNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_LOGIN" Relationship="Self.SYS_C0045609" FromRole="T_USER" ToRole="T_LOGIN" />
+          <Property Name="ICON" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADMINFLG" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="SYS_C0045609">
+          <End Role="T_USER" Type="Self.T_USER" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="T_LOGIN" Type="Self.T_LOGIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_LOGIN">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Internship_Context" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_LOGIN" EntityType="Self.T_LOGIN" />
+          <EntitySet Name="T_USER" EntityType="Self.T_USER" />
+          <AssociationSet Name="SYS_C0045609" Association="Self.SYS_C0045609">
+            <End Role="T_USER" EntitySet="T_USER" />
+            <End Role="T_LOGIN" EntitySet="T_LOGIN" />
+          </AssociationSet>
+          <EntitySet Name="T_TEST" EntityType="Model.T_TEST" />
+          <EntitySet Name="T_GROUP" EntityType="Model.T_GROUP" />
+          <EntitySet Name="T_TEST2" EntityType="Model.T_TEST2" />
+          <EntitySet Name="T_ANSWER" EntityType="Model.T_ANSWER" />
+          <EntitySet Name="T_CATEGORY" EntityType="Model.T_CATEGORY" />
+          <EntitySet Name="T_GIFTITEMLIST" EntityType="Model.T_GIFTITEMLIST" />
+          <EntitySet Name="T_HOWTOGIVE" EntityType="Model.T_HOWTOGIVE" />
+          <EntitySet Name="T_OPINION" EntityType="Model.T_OPINION" />
+          <EntitySet Name="T_QUESTION" EntityType="Model.T_QUESTION" />
+          <EntitySet Name="T_QUESTIONNAIRE" EntityType="Model.T_QUESTIONNAIRE" />
+          <EntitySet Name="T_SUBCATEGORY" EntityType="Model.T_SUBCATEGORY" />
+        </EntityContainer>
+        <EntityType Name="T_TEST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="SCORE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="GRADE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TANABE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_GROUP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="GROUPNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_TEST2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SCORE2" Type="Int16" />
+          <Property Name="GRADE2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_ANSWER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="QUESTIONNAIREID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="QUESTIONID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+            <PropertyRef Name="SUB_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SUB_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTDATE" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="T_GIFTITEMLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTUSERID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORYID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SUBCATEGORYID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ISDONE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GIVEID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DETAILS" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EXPLANATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_HOWTOGIVE">
+          <Key>
+            <PropertyRef Name="GIVE_ID" />
+          </Key>
+          <Property Name="GIVE_ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_OPINION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="USERID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TEXT" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GOOD" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="BAD" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="T_QUESTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="QUESTIONNAIREID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OPTION5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE5" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_QUESTIONNAIRE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TIMELIMIT" Type="DateTime" />
+          <Property Name="GENRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATEID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CREATEDATE" Type="DateTime" />
+          <Property Name="ANSWER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_SUBCATEGORY">
+          <Key>
+            <PropertyRef Name="SUBCATEGORY_ID" />
+          </Key>
+          <Property Name="SUBCATEGORY_ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTDATE" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Internship_Context">
+          <EntitySetMapping Name="T_LOGIN">
+            <EntityTypeMapping TypeName="Model.T_LOGIN">
+              <MappingFragment StoreEntitySet="T_LOGIN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_USER">
+            <EntityTypeMapping TypeName="Model.T_USER">
+              <MappingFragment StoreEntitySet="T_USER">
+                <ScalarProperty Name="ADMINFLG" ColumnName="ADMINFLG" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="ICON" ColumnName="ICON" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TEST">
+            <EntityTypeMapping TypeName="Model.T_TEST">
+              <MappingFragment StoreEntitySet="T_TEST">
+                <ScalarProperty Name="TANABE" ColumnName="TANABE" />
+                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+                <ScalarProperty Name="SCORE" ColumnName="SCORE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_GROUP">
+            <EntityTypeMapping TypeName="Model.T_GROUP">
+              <MappingFragment StoreEntitySet="T_GROUP">
+                <ScalarProperty Name="GROUPNAME" ColumnName="GROUPNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TEST2">
+            <EntityTypeMapping TypeName="Model.T_TEST2">
+              <MappingFragment StoreEntitySet="T_TEST2">
+                <ScalarProperty Name="GRADE2" ColumnName="GRADE2" />
+                <ScalarProperty Name="SCORE2" ColumnName="SCORE2" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ANSWER">
+            <EntityTypeMapping TypeName="Model.T_ANSWER">
+              <MappingFragment StoreEntitySet="T_ANSWER">
+                <ScalarProperty Name="OPTION" ColumnName="OPTION" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="QUESTIONID" ColumnName="QUESTIONID" />
+                <ScalarProperty Name="QUESTIONNAIREID" ColumnName="QUESTIONNAIREID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_CATEGORY">
+            <EntityTypeMapping TypeName="Model.T_CATEGORY">
+              <MappingFragment StoreEntitySet="T_CATEGORY">
+                <ScalarProperty Name="REGISTDATE" ColumnName="REGISTDATE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="SUB_ID" ColumnName="SUB_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_GIFTITEMLIST">
+            <EntityTypeMapping TypeName="Model.T_GIFTITEMLIST">
+              <MappingFragment StoreEntitySet="T_GIFTITEMLIST">
+                <ScalarProperty Name="EXPLANATION" ColumnName="EXPLANATION" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+                <ScalarProperty Name="GIVEID" ColumnName="GIVEID" />
+                <ScalarProperty Name="ISDONE" ColumnName="ISDONE" />
+                <ScalarProperty Name="SUBCATEGORYID" ColumnName="SUBCATEGORYID" />
+                <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+                <ScalarProperty Name="REGISTUSERID" ColumnName="REGISTUSERID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_HOWTOGIVE">
+            <EntityTypeMapping TypeName="Model.T_HOWTOGIVE">
+              <MappingFragment StoreEntitySet="T_HOWTOGIVE">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="GIVE_ID" ColumnName="GIVE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_OPINION">
+            <EntityTypeMapping TypeName="Model.T_OPINION">
+              <MappingFragment StoreEntitySet="T_OPINION">
+                <ScalarProperty Name="BAD" ColumnName="BAD" />
+                <ScalarProperty Name="GOOD" ColumnName="GOOD" />
+                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_QUESTION">
+            <EntityTypeMapping TypeName="Model.T_QUESTION">
+              <MappingFragment StoreEntitySet="T_QUESTION">
+                <ScalarProperty Name="IMAGE5" ColumnName="IMAGE5" />
+                <ScalarProperty Name="IMAGE4" ColumnName="IMAGE4" />
+                <ScalarProperty Name="IMAGE3" ColumnName="IMAGE3" />
+                <ScalarProperty Name="IMAGE2" ColumnName="IMAGE2" />
+                <ScalarProperty Name="IMAGE1" ColumnName="IMAGE1" />
+                <ScalarProperty Name="OPTION5" ColumnName="OPTION5" />
+                <ScalarProperty Name="OPTION4" ColumnName="OPTION4" />
+                <ScalarProperty Name="OPTION3" ColumnName="OPTION3" />
+                <ScalarProperty Name="OPTION2" ColumnName="OPTION2" />
+                <ScalarProperty Name="OPTION1" ColumnName="OPTION1" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="QUESTIONNAIREID" ColumnName="QUESTIONNAIREID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_QUESTIONNAIRE">
+            <EntityTypeMapping TypeName="Model.T_QUESTIONNAIRE">
+              <MappingFragment StoreEntitySet="T_QUESTIONNAIRE">
+                <ScalarProperty Name="ANSWER" ColumnName="ANSWER" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEID" ColumnName="CREATEID" />
+                <ScalarProperty Name="GENRE" ColumnName="GENRE" />
+                <ScalarProperty Name="TIMELIMIT" ColumnName="TIMELIMIT" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SUBCATEGORY">
+            <EntityTypeMapping TypeName="Model.T_SUBCATEGORY">
+              <MappingFragment StoreEntitySet="T_SUBCATEGORY">
+                <ScalarProperty Name="REGISTDATE" ColumnName="REGISTDATE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SUBCATEGORY_ID" ColumnName="SUBCATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

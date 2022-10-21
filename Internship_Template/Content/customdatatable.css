@@ -1,0 +1,154 @@
+﻿/* これ以降DataTablesの編集 */
+.tblSample {
+    padding: 0;
+}
+
+table.dataTable tbody td {
+    padding: 3px 5px;
+}
+
+.tblDatatable tbody td {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    white-space: nowrap; /* 連続する半角スペース・タブ・改行を、1つの半角スペースとして表示 */
+    overflow: hidden; /*はみ出た部分を表示しない*/
+    text-overflow: ellipsis; /*はみ出た場合の表示方法(ellipsis:省略記号)*/
+    max-width: 300px; /*最大幅指定*/
+}
+
+/* 行の色を変更する */
+.tblDatatable thead tr {
+    background-color: #cde3fa;
+}
+
+.tblDatatable tbody tr.odd {
+    background-color: #FFFFFF;
+}
+
+    .tblDatatable tbody tr.odd:hover {
+        background-color: #81f7ff;
+    }
+
+.tblDatatable tbody tr.even {
+    background-color: #EEEEEE;
+}
+
+    .tblDatatable tbody tr.even:hover {
+        background-color: #81f7ff;
+    }
+
+/* 罫線を引く */
+.tblDatatable thead td:first-child {
+    border-left: 1px solid #808080;
+}
+
+.tblDatatable thead td {
+    border-top: 1px solid #808080;
+    border-right: 1px solid #808080;
+}
+
+.tblDatatable tbody td:first-child {
+    border-left: 1px solid #808080;
+}
+
+.tblDatatable tbody td {
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+
+
+table.dataTable.no-footer {
+    border-bottom: none;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #808080;
+    text-align: center;
+    padding: 5px;
+}
+
+input[type=search] {
+    height: 29px;
+    padding: 3px 3px;
+    margin: 1px 0;
+    border: 1px solid #999;
+    width: 60px;
+    ime-mode: disabled;
+}
+
+/*テーブル上部コントロールのラッパー*/
+.tblSample .top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: none;
+    margin-left: 0;
+}
+
+.dataTables_filter {
+    margin: 0;
+    float: none;
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding-top: 0;
+    margin-right: 0;
+}
+
+.dataTables_info {
+    width: 220px;
+}
+
+/*件数表示位置調整*/
+.dataTables_wrapper .dataTables_length {
+    padding: 0;
+    margin-left: 500px;
+    margin-right: 20px;
+    float: none;
+    width: 100px;
+}
+
+/*ページングボタン位置調整*/
+.dataTables_wrapper .dataTables_paginate {
+    float: none;
+    width: 400px;
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0;
+    }
+
+.sorting {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cboxcell {
+    text-align: center;
+}
+
+/*ヘッダとボディ間のスペース排除ここから*/
+/*.dataTables_scrollBody thead {
+    visibility: collapse !important;
+}
+
+.dataTables_scrollBody {
+    margin-top: -20px;
+}
+*/ /*ここまで*/
+
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    /*    border: 1px solid #111;*/
+    border: none;
+    width: initial !important;
+}
+
+/* ここまでDataTablesの編集 */

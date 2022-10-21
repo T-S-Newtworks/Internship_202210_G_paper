@@ -1,0 +1,179 @@
+﻿@model Internship_Template.Models.VM.患者一覧画面
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+@Scripts.Render("~/Script/common")
+@Styles.Render("~/Content/common")
+
+
+<script>
+    function BackToDetail(e) {
+        var e = e || window.event;
+        var elem = e.currentTarget;
+        var id = elem.value;
+        var url = location.protocol + "//" + location.host + "/Patients/Detail?id=" + id;
+        location.href = url;
+    }
+
+</script>
+
+<style>
+
+    .txtDisp {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .s200.avatar {
+        width: 200px;
+        height: 200px;
+        margin-right: 10px;
+    }
+</style>
+
+<div id="content" class="topSpace">
+    <div>
+        <h1 class="profileTitle">
+            患者情報編集画面
+        </h1>
+    </div>
+
+    @using (Html.BeginForm("EditComplete", "Patients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="profileContent">
+            <div class="card profileCard">
+                <div class="card-header text-white sysBaseColor">
+                    <i class="fas fa-user-cog">患者情報編集</i>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-6 pb-4">
+                                <div class="row inputItem">
+                                    <label class="itemLabel">ID</label>
+                                    <div class="form-group">
+                                        <label>@Model.TargetPatient.ID</label>
+                                    </div>
+                                    @*<label class="itemLabel">ID</label>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.TargetDoctor.ID, new { htmlAttributes = new { @class = "textBox form-control" } })
+
+                </div>*@
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">名前</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.NAME, new { htmlAttributes = new { @class = "textBox form-control" } })
+
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">生年月日</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.BIRTHDAY, new { htmlAttributes = new { @class = "textBox form-control" } })
+
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">性別</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.GENDER, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">年齢</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.AGE, new { htmlAttributes = new { @class = "textBox form-control" } })
+
+
+                                        <!--<input type="text" class="textBox form-control" value="@*Model.TargetPatient.AGE*@"  />-->
+
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">血液型</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.BLOODTYPE, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">住所</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.ADDRESS, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">電話番号</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.TEL, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">アレルギー</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.ALLERGY, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">病歴</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.MEDICALHISTORY, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">妊娠有無</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetPatient.PREGNANCY, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                                <!--TODO: パスワードの変更を実装していない。できるようにすると良いでしょう-->
+                                @*<label>パスワード</label>
+            <div class="form-inline">
+                @Html.PasswordFor(model => model.TargetUser.T_LOGIN.PASSWORD, htmlAttributes: new { @class = "textBox form-control" })
+                @Html.ValidationMessageFor(model => model.TargetUser.T_LOGIN.PASSWORD, "", new { @id = "requiredPassWord" })
+            </div>*@
+                            </div>
+                            @Html.HiddenFor(model => model.TargetPatient.ID, new { Value = @Model.TargetPatient.ID })
+                            @Html.HiddenFor(model => model.TargetPatient.NAME, new { Value = @Model.TargetPatient.NAME })
+                            @Html.HiddenFor(model => model.TargetPatient.BIRTHDAY, new { Value = @Model.TargetPatient.BIRTHDAY })
+                            @Html.HiddenFor(model => model.TargetPatient.GENDER, new { Value = @Model.TargetPatient.GENDER })
+                            @Html.HiddenFor(model => model.TargetPatient.AGE, new { Value = @Model.TargetPatient.AGE })
+                            @Html.HiddenFor(model => model.TargetPatient.BLOODTYPE, new { Value = @Model.TargetPatient.BLOODTYPE })
+                            @Html.HiddenFor(model => model.TargetPatient.ADDRESS, new { Value = @Model.TargetPatient.ADDRESS })
+                            @Html.HiddenFor(model => model.TargetPatient.TEL, new { Value = @Model.TargetPatient.TEL })
+                            @Html.HiddenFor(model => model.TargetPatient.ALLERGY, new { Value = @Model.TargetPatient.ALLERGY })
+                            @Html.HiddenFor(model => model.TargetPatient.MEDICALHISTORY, new { Value = @Model.TargetPatient.MEDICALHISTORY })
+                            @Html.HiddenFor(model => model.TargetPatient.PREGNANCY, new { Value = @Model.TargetPatient.PREGNANCY })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttonContent">
+                <button type="submit" class="btn btnDefault sysBaseColor profileButton">
+                    <i class="fas fa-pen-alt">
+                        確定
+                    </i>
+                </button>
+                <button type="button" class="btn btn-secondary profileButton" value="@Model.TargetPatient.ID" onclick="BackToDetail()">
+                    <i class="fas fa-reply">
+                        戻る
+                    </i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

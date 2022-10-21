@@ -1,0 +1,151 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.患者一覧画面
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+
+
+
+<style>
+
+    .card > .content-list > li {
+        padding: 10px 16px;
+    }
+
+    .content-list.members-list li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .members-list {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 0 !important;
+    }
+
+    .list-item-name {
+        display: flex;
+        align-items: center;
+    }
+
+    .s60.avatar {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .member-controls {
+        display: flex;
+        align-items: center;
+    }
+
+    .userState{
+        margin:5px;
+    }
+
+    .prepend-left-5 {
+        margin-left: 5px;
+    }
+
+
+    .badge-success {
+        padding: 4px 5px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        display: inline-block;
+        color: #fff;
+        background-color: #1aaa55;
+    }
+</style>
+
+<script>
+    function MoveToAddPatient() {
+        location.href = location.protocol + "//" + location.host + "/Patients/Create";
+    }
+
+    function MoveToDeletePatient(e) {
+        var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Patients/Delete?id=" + id;
+    }
+
+    function MoveToDetailPatient(e) {
+        var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Patients/Detail?id=" + id;
+    }
+
+
+    
+</script>
+
+
+    <div class="container-fluid topSpace">
+        <div class="column" style="margin-bottom:0.5rem;">
+            <h3 class="MenuTitle">患者リスト</h3>
+            <div style="display: flex; justify-content: space-between;">
+                <left>
+                    <form action="Search">
+                        <input type="text" id="searchId" name="userId" placeholder="患者ID">
+                        <input type="text" id="searchName" name="userName" placeholder="氏名">
+                        <button class="btnDefault sysBaseColor btn-sm" style="max-width:180px; ">
+                            <i class="fab fa-sistrix">
+                                検索
+                            </i>
+                        </button>
+                    </form>
+                </left>
+                <right>
+                    <button class="btnDefault sysBaseColor" onclick="MoveToAddPatient()" style="max-width:180px; ">
+                        <i class="fas fa-user-plus">
+                            新規登録
+                        </i>
+                    </button>
+                </right>
+            </div>
+        </div>
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(180deg, #00aaff,#9cffff); ">
+                    <span class="flex-project-title" style="color:white">
+                        <i class="fas fa-user-md" style="color:white;">
+                            患者リスト
+                        </i>
+                        
+                    </span>
+                    
+
+                </div>
+                <ul class="content-list members-list">
+                    @if (Model.Patients.Any())
+                    {
+                        foreach (var member in Model.Patients)
+                        {
+                            <li class="group_member member">
+                                <button class="btnDefault sysBaseColor" onclick="MoveToDetailPatient(this)" value="@member.ID" style="max-width:180px; ">
+                                    <i class="fas fa-address-card">
+                                        閲覧
+                                    </i>
+                                </button>
+                                <span class="list-item-name">
+                                    @member.ID
+                                    @member.NAME
+
+                                   
+                                </span>
+                                <div class="controls member-controls">
+                                    
+                                        <button class="btn deleteBtn" id="deleteBtn" onclick="MoveToDeletePatient(this)" value="@member.ID">
+                                            <i class="fas fa-trash-alt">
+                                                削除
+                                            </i>
+                                        </button>
+                                </div>
+                                </li>
+                                    }
+                    }
+                </ul>
+            </div>
+    </div>

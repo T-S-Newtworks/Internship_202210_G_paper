@@ -1,0 +1,128 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.カルテ詳細画面
+
+@{
+    ViewBag.Title = "index";
+}
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+
+
+<style>
+    .input {
+        border: none;
+        outline: none;
+        padding: 0px;
+    }
+
+    .table {
+        border: 2px solid;
+    }
+</style>
+
+<script>
+    function MoveToAddUser() {
+        location.href = location.protocol + "//" + location.host + "/Record/Index";
+    }
+
+
+</script>
+
+
+<form action="CreateComplete">
+
+    @*一行目*@
+
+    <div style="margin: 2% 0px 0px 0px">
+        <div style="display:flex; justify-content: @*flex-start; margin: 0px 0px 0px 349px*@">
+            <table border="2" align="left">
+                <tbody>
+                    <tr>
+                        <td style="width:60px; height:50px">カルテID</td>
+                        <td style="width:80px; height:50px">@Model.Chart.ID</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="2" align="left" style="margin-left: 30px">
+                <tbody>
+                    <tr>
+                        <td style="width:60px; height:50px">病院ID</td>
+                        <td style="width:80px; height:50px">@Model.Chart.HOSPITAL_ID</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="2" style="margin-left: 30px">
+                <tbody>
+                    <tr>
+                        <td style="width:80px; height:50px">受診日時</td>
+                        <td style="width:120px; height:50px">@Model.Chart.YMD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+
+        @*二行目*@
+        <div style="display:flex; justify-content: @*flex-start; margin: 0px 0px 0px 349px*@">
+            <table border="2" align="left">
+                <tbody>
+                    <tr>
+                        <td style="width:60px; height:50px">患者ID</td>
+                        <td style="width:80px; height:50px">@Model.Chart.PATIENT_ID</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table border="2" style="margin-left: 30px">
+                <tbody>
+                    <tr>
+                        <td style="width:60px; height:50px">医師ID</td>
+                        <td style="width:140px; height:50px">@Model.Chart.DOCTOR_ID</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+
+        @*三行目*@
+        <div>
+            <center>
+                <table border="2">
+                    <tbody>
+                        <tr>
+                            <td style="width:40px; height:50px">病名</td>
+                            <td style="width:140px; height:50px">@Model.Chart.DISEASENAME</td>
+                            <td style="width:40px; height:50px">症状</td>
+                            <td style="width:140px; height:50px">@Model.Chart.SYMPTOMS</td>
+                            <td style="width:40px; height:50px">部位</td>
+                            <td style="width:60px; height:50px">@Model.Chart.PART</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" style="height:320px">
+                                <textarea name="Chart.Details" class="input" style="max-width: 1100px; resize: none;" cols="250" rows="20" placeholder="診察内容・結果" readonly="readonly">@Model.Chart.DETAILS</textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+
+        <br>
+
+        @*4行目*@
+        <div class="link" style="margin-left:1000px">
+            <a href="Index">検索はこちら</a>
+        </div>
+    </div>
+
+</form>

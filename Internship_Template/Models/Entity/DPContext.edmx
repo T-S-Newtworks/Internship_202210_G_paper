@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DP_dbContext.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_CHART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="DOCTOR_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="YMD" Type="date" />
+          <Property Name="SYMPTOMS" Type="varchar2" MaxLength="50" />
+          <Property Name="PART" Type="varchar2" MaxLength="50" />
+          <Property Name="DISEASENAME" Type="varchar2" MaxLength="50" />
+          <Property Name="DETAILS" Type="varchar2" MaxLength="200" />
+          <Property Name="HOSPITAL_ID" Type="varchar2" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="T_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="20" />
+          <Property Name="HOSPITAL_ID" Type="varchar2" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="T_DOCTOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="HOSPITAL_ID" Type="varchar2" MaxLength="5" />
+          <Property Name="DEPARTMENT_CD" Type="varchar2" MaxLength="5" />
+          <Property Name="GENDER" Type="varchar2" MaxLength="2" />
+          <Property Name="AGE" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="T_HOSPITAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_KENGEN">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="T_PATIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="BIRTHDAY" Type="date" />
+          <Property Name="GENDER" Type="varchar2" MaxLength="2" />
+          <Property Name="AGE" Type="number" Precision="38" Scale="0" />
+          <Property Name="BLOODTYPE" Type="varchar2" MaxLength="10" />
+          <Property Name="ADDRESS" Type="varchar2" MaxLength="100" />
+          <Property Name="TEL" Type="varchar2" MaxLength="20" />
+          <Property Name="ALLERGY" Type="varchar2" MaxLength="100" />
+          <Property Name="MEDICALHISTORY" Type="varchar2" MaxLength="300" />
+          <Property Name="PREGNANCY" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="USER_PASS" Type="varchar2" MaxLength="100" />
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="HOSPITAL_ID" Type="varchar2" MaxLength="5" />
+          <Property Name="KENGEN_CD" Type="varchar2" MaxLength="5" />
+          <Property Name="SUBMIT_USER_ID" Type="varchar2" MaxLength="5" />
+          <Property Name="SUBMIT_YMD" Type="date" />
+          <Property Name="UPDATE_YMD" Type="date" />
+          <Property Name="DELETE_YMD" Type="date" />
+        </EntityType>
+        <EntityContainer Name="DP_dbContextStoreContainer">
+          <EntitySet Name="T_CHART" EntityType="Self.T_CHART" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="T_DEPARTMENT" EntityType="Self.T_DEPARTMENT" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="T_DOCTOR" EntityType="Self.T_DOCTOR" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="T_HOSPITAL" EntityType="Self.T_HOSPITAL" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="T_KENGEN" EntityType="Self.T_KENGEN" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="T_PATIENT" EntityType="Self.T_PATIENT" Schema="INTERNSHIP_202210" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="INTERNSHIP_202210" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DP_dbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_CHART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOCTOR_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YMD" Type="DateTime" />
+          <Property Name="SYMPTOMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PART" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DISEASENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETAILS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_DOCTOR" Relationship="DP_dbContext.T_CHARTT_DOCTOR" FromRole="T_CHART" ToRole="T_DOCTOR" />
+          <NavigationProperty Name="T_PATIENT" Relationship="DP_dbContext.T_CHARTT_PATIENT" FromRole="T_CHART" ToRole="T_PATIENT" />
+        </EntityType>
+        <EntityType Name="T_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_HOSPITAL" Relationship="DP_dbContext.T_DEPARTMENTT_HOSPITAL" FromRole="T_DEPARTMENT" ToRole="T_HOSPITAL" />
+          <NavigationProperty Name="T_DOCTOR" Relationship="DP_dbContext.T_DOCTORT_DEPARTMENT" FromRole="T_DEPARTMENT" ToRole="T_DOCTOR" />
+        </EntityType>
+        <EntityType Name="T_DOCTOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTMENT_CD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="GENDER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="AGE" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="T_HOSPITAL" Relationship="DP_dbContext.T_HOSPITALT_DOCTOR" FromRole="T_DOCTOR" ToRole="T_HOSPITAL" />
+          <NavigationProperty Name="T_DEPARTMENT" Relationship="DP_dbContext.T_DOCTORT_DEPARTMENT" FromRole="T_DOCTOR" ToRole="T_DEPARTMENT" />
+          <NavigationProperty Name="T_CHART" Relationship="DP_dbContext.T_CHARTT_DOCTOR" FromRole="T_DOCTOR" ToRole="T_CHART" />
+        </EntityType>
+        <EntityType Name="T_HOSPITAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_DEPARTMENT" Relationship="DP_dbContext.T_DEPARTMENTT_HOSPITAL" FromRole="T_HOSPITAL" ToRole="T_DEPARTMENT" />
+          <NavigationProperty Name="T_DOCTOR" Relationship="DP_dbContext.T_HOSPITALT_DOCTOR" FromRole="T_HOSPITAL" ToRole="T_DOCTOR" />
+          <NavigationProperty Name="USER" Relationship="DP_dbContext.T_HOSPITALUSER" FromRole="T_HOSPITAL" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="T_KENGEN">
+          <Key>
+            <PropertyRef Name="CODE" />
+          </Key>
+          <Property Name="CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="DP_dbContext.T_KENGENUSER" FromRole="T_KENGEN" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="T_PATIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTHDAY" Type="DateTime" />
+          <Property Name="GENDER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="AGE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="BLOODTYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ALLERGY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MEDICALHISTORY" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="PREGNANCY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_CHART" Relationship="DP_dbContext.T_CHARTT_PATIENT" FromRole="T_PATIENT" ToRole="T_CHART" />
+        </EntityType>
+        <EntityContainer Name="DPContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_CHART" EntityType="Self.T_CHART" />
+          <EntitySet Name="T_DEPARTMENT" EntityType="Self.T_DEPARTMENT" />
+          <EntitySet Name="T_DOCTOR" EntityType="Self.T_DOCTOR" />
+          <EntitySet Name="T_HOSPITAL" EntityType="Self.T_HOSPITAL" />
+          <EntitySet Name="T_KENGEN" EntityType="Self.T_KENGEN" />
+          <EntitySet Name="T_PATIENT" EntityType="Self.T_PATIENT" />
+          <EntitySet Name="USER" EntityType="DP_dbContext.USER" />
+          <AssociationSet Name="T_DEPARTMENTT_HOSPITAL" Association="DP_dbContext.T_DEPARTMENTT_HOSPITAL">
+            <End Role="T_DEPARTMENT" EntitySet="T_DEPARTMENT" />
+            <End Role="T_HOSPITAL" EntitySet="T_HOSPITAL" />
+          </AssociationSet>
+          <AssociationSet Name="T_HOSPITALT_DOCTOR" Association="DP_dbContext.T_HOSPITALT_DOCTOR">
+            <End Role="T_HOSPITAL" EntitySet="T_HOSPITAL" />
+            <End Role="T_DOCTOR" EntitySet="T_DOCTOR" />
+          </AssociationSet>
+          <AssociationSet Name="T_HOSPITALUSER" Association="DP_dbContext.T_HOSPITALUSER">
+            <End Role="T_HOSPITAL" EntitySet="T_HOSPITAL" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="T_KENGENUSER" Association="DP_dbContext.T_KENGENUSER">
+            <End Role="T_KENGEN" EntitySet="T_KENGEN" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="T_DOCTORT_DEPARTMENT" Association="DP_dbContext.T_DOCTORT_DEPARTMENT">
+            <End Role="T_DOCTOR" EntitySet="T_DOCTOR" />
+            <End Role="T_DEPARTMENT" EntitySet="T_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="T_CHARTT_DOCTOR" Association="DP_dbContext.T_CHARTT_DOCTOR">
+            <End Role="T_CHART" EntitySet="T_CHART" />
+            <End Role="T_DOCTOR" EntitySet="T_DOCTOR" />
+          </AssociationSet>
+          <AssociationSet Name="T_CHARTT_PATIENT" Association="DP_dbContext.T_CHARTT_PATIENT">
+            <End Role="T_CHART" EntitySet="T_CHART" />
+            <End Role="T_PATIENT" EntitySet="T_PATIENT" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="USER_PASS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOSPITAL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="KENGEN_CD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SUBMIT_USER_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SUBMIT_YMD" Type="DateTime" />
+          <Property Name="UPDATE_YMD" Type="DateTime" />
+          <Property Name="DELETE_YMD" Type="DateTime" />
+          <NavigationProperty Name="T_HOSPITAL" Relationship="DP_dbContext.T_HOSPITALUSER" FromRole="USER" ToRole="T_HOSPITAL" />
+          <NavigationProperty Name="T_KENGEN" Relationship="DP_dbContext.T_KENGENUSER" FromRole="USER" ToRole="T_KENGEN" />
+        </EntityType>
+        <Association Name="T_DEPARTMENTT_HOSPITAL">
+          <End Type="DP_dbContext.T_DEPARTMENT" Role="T_DEPARTMENT" Multiplicity="*" />
+          <End Type="DP_dbContext.T_HOSPITAL" Role="T_HOSPITAL" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_HOSPITAL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_DEPARTMENT">
+              <PropertyRef Name="HOSPITAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_HOSPITALT_DOCTOR">
+          <End Type="DP_dbContext.T_HOSPITAL" Role="T_HOSPITAL" Multiplicity="0..1" />
+          <End Type="DP_dbContext.T_DOCTOR" Role="T_DOCTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_HOSPITAL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_DOCTOR">
+              <PropertyRef Name="HOSPITAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_HOSPITALUSER">
+          <End Type="DP_dbContext.T_HOSPITAL" Role="T_HOSPITAL" Multiplicity="0..1" />
+          <End Type="DP_dbContext.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_HOSPITAL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="HOSPITAL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_KENGENUSER">
+          <End Type="DP_dbContext.T_KENGEN" Role="T_KENGEN" Multiplicity="0..1" />
+          <End Type="DP_dbContext.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_KENGEN">
+              <PropertyRef Name="CODE" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="KENGEN_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_DOCTORT_DEPARTMENT">
+          <End Type="DP_dbContext.T_DOCTOR" Role="T_DOCTOR" Multiplicity="*" />
+          <End Type="DP_dbContext.T_DEPARTMENT" Role="T_DEPARTMENT" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="T_DEPARTMENT">
+              <PropertyRef Name="CODE" />
+            </Principal>
+            <Dependent Role="T_DOCTOR">
+              <PropertyRef Name="DEPARTMENT_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_CHARTT_DOCTOR">
+          <End Type="DP_dbContext.T_CHART" Role="T_CHART" Multiplicity="*" />
+          <End Type="DP_dbContext.T_DOCTOR" Role="T_DOCTOR" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="T_DOCTOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_CHART">
+              <PropertyRef Name="DOCTOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="T_CHARTT_PATIENT">
+          <End Type="DP_dbContext.T_CHART" Role="T_CHART" Multiplicity="*" />
+          <End Type="DP_dbContext.T_PATIENT" Role="T_PATIENT" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="T_PATIENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_CHART">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DP_dbContextStoreContainer" CdmEntityContainer="DPContext">
+          <EntitySetMapping Name="T_CHART">
+            <EntityTypeMapping TypeName="DP_dbContext.T_CHART">
+              <MappingFragment StoreEntitySet="T_CHART">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+                <ScalarProperty Name="YMD" ColumnName="YMD" />
+                <ScalarProperty Name="SYMPTOMS" ColumnName="SYMPTOMS" />
+                <ScalarProperty Name="PART" ColumnName="PART" />
+                <ScalarProperty Name="DISEASENAME" ColumnName="DISEASENAME" />
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+                <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DEPARTMENT">
+            <EntityTypeMapping TypeName="DP_dbContext.T_DEPARTMENT">
+              <MappingFragment StoreEntitySet="T_DEPARTMENT">
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DOCTOR">
+            <EntityTypeMapping TypeName="DP_dbContext.T_DOCTOR">
+              <MappingFragment StoreEntitySet="T_DOCTOR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+                <ScalarProperty Name="DEPARTMENT_CD" ColumnName="DEPARTMENT_CD" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_HOSPITAL">
+            <EntityTypeMapping TypeName="DP_dbContext.T_HOSPITAL">
+              <MappingFragment StoreEntitySet="T_HOSPITAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_KENGEN">
+            <EntityTypeMapping TypeName="DP_dbContext.T_KENGEN">
+              <MappingFragment StoreEntitySet="T_KENGEN">
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_PATIENT">
+            <EntityTypeMapping TypeName="DP_dbContext.T_PATIENT">
+              <MappingFragment StoreEntitySet="T_PATIENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="BIRTHDAY" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="BLOODTYPE" ColumnName="BLOODTYPE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="ALLERGY" ColumnName="ALLERGY" />
+                <ScalarProperty Name="MEDICALHISTORY" ColumnName="MEDICALHISTORY" />
+                <ScalarProperty Name="PREGNANCY" ColumnName="PREGNANCY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="DP_dbContext.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="DELETE_YMD" ColumnName="DELETE_YMD" />
+                <ScalarProperty Name="UPDATE_YMD" ColumnName="UPDATE_YMD" />
+                <ScalarProperty Name="SUBMIT_YMD" ColumnName="SUBMIT_YMD" />
+                <ScalarProperty Name="SUBMIT_USER_ID" ColumnName="SUBMIT_USER_ID" />
+                <ScalarProperty Name="KENGEN_CD" ColumnName="KENGEN_CD" />
+                <ScalarProperty Name="HOSPITAL_ID" ColumnName="HOSPITAL_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PASS" ColumnName="USER_PASS" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

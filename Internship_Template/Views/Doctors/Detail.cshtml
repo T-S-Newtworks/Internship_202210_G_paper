@@ -1,0 +1,128 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+
+@model Internship_Template.Models.VM.先生一覧画面
+
+@{
+    ViewBag.Title = "Profile";
+}
+@Styles.Render("~/Content/common")
+
+<script>
+    function HistoryBack(e) {
+        var value = e.value;
+        var url;
+        if (value == "1") {
+            url = location.protocol + "//" + location.host;
+        }
+        else {
+            url = location.protocol + "//" + location.host + "/Doctors/Index";
+        }
+        location.href = url;
+
+    }
+
+    function MoveToEditDoctor(id) {
+        //var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Doctors/Edit?id=" + id;
+    }
+</script>
+
+<style>
+
+    .txtDisp {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .s200.avatar {
+        width: 200px;
+        height: 200px;
+        margin-right: 10px;
+    }
+
+</style>
+
+<div id="content" class="topSpace">
+
+    @using (Html.BeginForm("Edit", "Doctors"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="profileContent">
+            <div class="card profileCard">
+                <div class="card-header text-white sysBaseColor">
+                    <i class="">
+                        先生情報
+                    </i>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-6 pb-4 size20">
+                                <div class="row">
+                                    <label class="itemLabel">ID</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetDoctor.ID</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">名前</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetDoctor.NAME</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">年齢</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetDoctor.AGE</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">性別</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetDoctor.GENDER</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">所属</label>
+                                    <div class="form-group ">
+                                        <label>@Model.DoctorHospital.NAME</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">専門</label>
+                                    <div class="form-group ">
+                                        <label>@Model.DoctorDepartment.NAME</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="buttonContent">
+
+                    <button type="button" class="btn btnDefault sysBaseColor profileButton" onclick="MoveToEditDoctor('@Model.TargetDoctor.ID')" value="">
+                        <i class="fas fa-pen-alt">
+                            編集
+                        </i>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

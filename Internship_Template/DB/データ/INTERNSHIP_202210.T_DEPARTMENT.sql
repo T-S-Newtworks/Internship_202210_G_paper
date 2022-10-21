@@ -1,0 +1,12 @@
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('1','内科','1');
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('10','脳神経外科','1');
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('11','産科・婦人科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('12','精神科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('2','小児科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('3','外科','1');
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('4','整形外科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('5','眼科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('6','耳鼻咽喉科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('7','皮膚科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('8','泌尿器科',null);
+insert into INTERNSHIP_202210.T_DEPARTMENT(CODE,NAME,HOSPITAL_ID) values ('9','放射線科',null);

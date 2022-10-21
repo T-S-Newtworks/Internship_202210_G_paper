@@ -1,0 +1,292 @@
+﻿@model Internship_Template.Models.VM.TOP画面
+@*@model MvcView.Models.Article*@
+
+@{
+    ViewBag.Title = "Home Page";
+    //Layout = null;
+}
+
+@Styles.Render("~/Content/common")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script>
+    /**
+     * 未実装ボタンクリック時
+     * */
+    function unimplemented() {
+        alert("この機能は未実装です。");
+        return;
+    }
+    /**
+     * ユーザー一覧画面遷移
+     * */
+    function MoveToUserList() {
+        location.href = location.protocol + "//" + location.host + "/Users/Index";
+    }
+
+    function MoveToPatientList() {
+        location.href = location.protocol + "//" + location.host + "/Patients/Index";
+    }
+
+    function MoveToDoctortList() {
+        location.href = location.protocol + "//" + location.host + "/Doctors/Index";
+    }
+
+    function MoveToRecordList() {
+        location.href = location.protocol + "//" + location.host + "/Record/Index";
+    }
+
+
+    function inputChange(e) {
+        //let select = document.querySelector('[name="pulldown"]');
+        var test = e.value;
+        // formタグのもとを作成
+        //var _form = document.createElement("form");
+        //_form.action = "Index?hospitalId=" + test; //選択値設定
+        //$("body").append(_form);
+        //// formを送信
+        //_form.submit();
+        var _form = document.createElement("form");
+        //_form.action = ""; //選択値設定
+        // 追加で送信するパラメータ
+        var newValue = document.createElement('input');
+        // 画面に表示されてしまうので、隠す
+        newValue.type = "hidden";
+        // パラメータ名
+        newValue.name = "hospitalId";
+        // パラメータ値
+        newValue.value = test;
+
+        _form.appendChild(newValue);
+        // formを送信
+        $("body").append(_form);
+
+        _form.submit();
+        //location.href = location.protocol + "//" + location.host + "/home/MakeChart?hospitalId=" + test; //選択値設定
+
+
+    }
+</script>
+
+<style>
+
+        .head {
+            float: right;
+            margin-right: 90px;
+        }
+
+        .s100.avatar {
+            width: 100px;
+            height: 100px;
+        }
+
+        .homeContent {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 850px;
+        }
+
+        .contentBody {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            display: flex;
+            height: 1000px;
+        }
+
+        .leftContent {
+            width: 30%;
+            /*margin-right: 1.5rem;*/
+        }
+
+        .pulldown-area {
+            padding-right: 90px;
+        }
+
+        .rightContent {
+            width: 70%;
+        }
+
+        .rightContent img {
+            margin-left: 50px;
+        }
+
+        .vacant2 {
+            height: 2rem;
+        }
+
+        .vacant1 {
+            height: 1rem;
+        }
+
+        .contentWrapper {
+            height: 550px;
+        }
+
+        .contentWrapper .defaultTxt {
+            height: 10%;
+        }
+
+        /*    .contentWrapper {
+            height: 70%;
+        }
+    */
+        .cardItem {
+            height: 700px;
+        }
+
+        .cardButtonArea {
+        }
+
+        .btnDefault {
+            width: 200px;
+            height: 130px;
+            margin: 20px;
+            padding: 10px 20px !important;
+            font-size: 24px;
+        }
+
+        .rightContent img {
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+
+        .testClass {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            justify-content: space-around !important;
+            height: 100%;
+            align-items: center;
+        }
+</style>
+
+@*<div class="head">
+        @if (Model.DPUser != null)
+        {
+        <p>@Model.DPUser.T_HOSPITAL.NAME:@Model.DPUser.USER_NAME (ID:@Model.DPUser.USER_ID ) </p>
+            
+        }
+</div>*@
+
+<div class="main">
+
+    <div class="">
+        <h1 class="MenuTitle">TOP</h1>
+    </div>
+
+    <div class="pulldown-area" style="text-align: right;">
+
+        @*@Html.DropDownListFor(
+                model => model.DepartMents
+                (IEnumerable<SelectListItem>)ViewBag.SelectOptions,
+                "選択",
+                new { @class="pulldown"}
+            )*@
+
+        @Html.DropDownListFor(
+        model => model.HospitalsList,
+        Model.HospitalsList
+        .Select(x => new SelectListItem()
+        {
+            Value = x.Value,
+            Text = x.Text,
+            Selected = true,
+        }),
+        //(IEnumerable<SelectListItem>)Model.HospitalsList,
+        "選択",
+        new { @class = "pulldown", @name = "pulldown", @onchange = "inputChange(this)" }
+        )
+
+        @* DropDownListで選択されているValueを取得して分岐処理 *@
+
+
+        @Html.DropDownListFor(
+        model => model.DepartmentsList,
+        (IEnumerable<SelectListItem>)Model.DepartmentsList,
+        "選択",
+        new { @class = "pulldown" }
+        )
+        @*<select name="section" class="pulldown" style="margin-right: 10px;">
+                <option value="">選択</option>
+                <option value="Internal-Medicine">内科</option>
+                <option value="Pediatrics">小児科</option>
+                <option value="General-Surgery">外科</option>
+                <option value="Orthopedic-Surgery">整形外科</option>
+                <option value="Ophthalmology">眼科</option>
+                <option value="Otorhinolaryngology">耳鼻咽喉科</option>
+                <option value="Dermatology">皮膚科</option>
+                <option value="Urology">泌尿器科科</option>
+                <option value="Radiology">放射線科</option>
+                <option value="Neurological-Surgery">脳神経外科</option>
+                <option value="Obstetrics-Gynecology">産科・婦人科</option>
+                <option value="Psychiatry">精神科</option>
+            </select>*@
+    </div>
+    @*<div>
+            <p>@Model.Charts.Count</p>
+            @{foreach (var chart in Model.Charts)
+                {
+                    <p>@chart.SYMPTOMS</p>
+
+                }
+            }
+        </div>*@
+
+
+    <div id="content" class="homeContent mb-3">
+
+        <div class="contentBody">
+            <div class="leftContent">
+                @*<div class="card">*@
+                <div class="cardItem">
+                    <div class="defaultTxt">
+                        <h3 class="MenuTitle">リスト</h3>
+                    </div>
+
+                    <div class="contentWrapper">
+                        <div class="testClass">
+                            <button class="btnDefault sysBaseColor" onclick="MoveToPatientList();">
+                                患者
+                            </button>
+                            <button class="btnDefault sysBaseColor" onclick="MoveToDoctortList();">
+                                先生
+                            </button>
+                            <button class="btnDefault sysBaseColor" onclick="MoveToRecordList()">
+                                電子カルテ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @*</div>*@
+            </div>
+            <div class="rightContent">
+                @*<img src="/Home/MakeChart?hospitalID=3" />*@
+                @{
+                    SelectListItem hospitalIten = Model.HospitalsList.Where(e => e.Selected == true).FirstOrDefault();
+                    string hospitalValue = hospitalIten == null ? null : hospitalIten.Value;
+                    <img src=@Url.Action("MakeChart", "Home", new { hospitalID =hospitalValue }) />
+
+                    @*for (var i = 0; i < Model.HospitalsList.Count; i++)
+                    {
+                        if (Model.HospitalsList[i].Selected == true)
+                        {
+                            <img src=@Url.Action("MakeChart", "Home", new { hospitalID = Model.HospitalsList[i].Value }) />
+                        }
+                    }*@
+
+                }
+                @*@Model.HospitalsList[1].Selected = true
+        <img src=@Url.Action("MakeChart", "Home", new { hospitalID = 2 }) />*@
+                @*<img src=@Url.Action("MakeChart", "Home", new { hospitalID = Se.Value}) />*@
+                @*@Url.Content("~/Home/MakeChart.cshtml")
+        <ifarame src="MakeChart.cshtml"></ifarame>
+        <p><img src="MakeChart.cshtml" /></p>
+        <img src="@Url.Content("~/Home/MakeChart.cshtml")" />*@
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,120 @@
+﻿@model Internship_Template.Models.VM.先生一覧画面
+
+@{
+    ViewBag.Title = "先生登録";
+}
+
+@Scripts.Render("~/Script/common")
+@Styles.Render("~/Content/common")
+
+
+<script>
+    function BackToIndex(e) {
+        var e = e || window.event;
+        var url = location.protocol + "//" + location.host + "/Doctors/Index";
+        location.href = url;
+    }
+
+</script>
+
+<style>
+
+    .txtDisp {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .s200.avatar {
+        width: 200px;
+        height: 200px;
+        margin-right: 10px;
+    }
+
+
+</style>
+
+<div id="content"class="topSpace">
+        <div>
+            <h1 class="profileTitle">先生登録画面</h1>
+        </div>
+
+    @using (Html.BeginForm("CreateComplete", "Doctors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="profileContent">
+            <div class="card profileCard">
+                <div class="card-header text-white sysBaseColor">
+                    <i class="fas fa-user-cog">
+                    先生登録
+                    </i>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            
+                            <div class="form-group col-6 pb-4">
+                                <div class="row inputItem">
+                                    <label class="itemLabel">ID</label>
+                                     <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.ID, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+                                <div class="row inputItem">
+                                    <label class="itemLabel">名前</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.NAME, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row inputItem">
+                                    <label class="itemLabel">年齢</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.AGE, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row inputItem">
+                                    <label class="itemLabel">性別</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.GENDER, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row inputItem">
+                                    <label class="itemLabel">所属</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.HOSPITAL_ID, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="row inputItem">
+                                    <label class="itemLabel">専門</label>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.TargetDoctor.DEPARTMENT_CD, new { htmlAttributes = new { @class = "textBox form-control" } })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttonContent">
+                <button type="submit" class="btn btnDefault sysBaseColor profileButton">
+                    <i class="fas fa-plus">
+                    登録
+                    </i>
+                </button>
+                <button type="button" class="btn btn-secondary profileButton" onclick="BackToIndex()">
+                    <i class="fas fa-reply">
+                    戻る
+                    </i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,119 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.カルテ作成画面
+
+@{
+    ViewBag.Title = "index";
+}
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+
+
+<style>
+    .input {
+        border: none;
+        outline: none;
+        padding: 0px;
+    }
+
+    .table {
+        border: 2px solid;
+    }
+</style>
+
+<script>
+    function MoveToAddUser() {
+        location.href = location.protocol + "//" + location.host + "/Record/Index";
+    }
+
+
+</script>
+
+
+<form action="CreateComplete">
+
+    @*一行目*@
+
+    <div style="margin: 2% 0px 0px 0px">
+        <div style="display:flex; justify-content: flex-start;" /*margin: 0px 0px 0px 349px* />
+        <table border="2" align="left">
+            <tbody>
+                <tr>
+                    <td style="width:60px; height:50px">病院ID</td>
+                    <td style="width:80px; height:50px"><input name="Chart.Hospital_ID" class="input" type="text" placeholder="****"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="2" style="margin-left: 30px">
+            <tbody>
+                <tr>
+                    <td style="width:80px; height:50px">受診日時</td>
+                    <td style="width:120px; height:50px"><input name="Chart.YMD" class="input" type="datetime-local" placeholder=""></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    @*二行目*@
+    <div style="display:flex; justify-content: flex-start; @*margin: 0px 0px 0px 349px" *@>
+        <table border="2" align="left">
+            <tbody>
+                <tr>
+                    <td style="width:60px; height:50px">患者ID</td>
+                    <td style="width:80px; height:50px"><input name="Chart.Patient_ID" class="input" type="text" placeholder="****"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="2" style="margin-left: 30px">
+            <tbody>
+                <tr>
+                    <td style="width:60px; height:50px">医師ID</td>
+                    <td style="width:140px; height:50px"><input name="Chart.Doctor_ID" class="input" type="text" placeholder="日立太郎"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    @*三行目*@
+    <div>
+        <center>
+            <table border="2">
+                <tbody>
+                    <tr>
+                        <td style="width:40px; height:50px">病名</td>
+                        <td style="width:140px; height:50px"><input name="Chart.DiseaseName" class="input" type="text" placeholder="風邪"></td>
+                        <td style="width:40px; height:50px">症状</td>
+                        <td style="width:140px; height:50px"><input name="Chart.Symptoms" class="input" type="text" placeholder="咳"></td>
+                        <td style="width:40px; height:50px">部位</td>
+                        <td style="width:60px; height:50px"><input name="Chart.Part" class="input" type="text" placeholder="喉"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="height:320px">
+                            <textarea name="Chart.Details" class="input" style="max-width: 1100px; resize: none;" cols="250" rows="20" placeholder="診察内容・結果"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+    </div>
+
+    <br>
+
+    @*4行目*@
+    <div style="display:flex; justify-content: flex-end; @*margin: 0px 0px 0px 1100px"*@>
+        <button class="btnDefault sysBaseColor" type="submit" style="margin-left: 700px">確定</button>
+    </div>
+
+</form>

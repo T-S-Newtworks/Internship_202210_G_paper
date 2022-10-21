@@ -1,0 +1,139 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.カルテ一覧画面
+
+@{
+    ViewBag.Title = "index";
+}
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+@Styles.Render("~/Content/customdatatable.css")
+@Styles.Render("~/Content/jquery.dataTables.css")
+@Styles.Render("~/Content/dataTables.bootstrap4.css")
+@Styles.Render("~/Content/site.css")
+
+@Scripts.Render("~/Scripts/jquery.dataTables.min.js")
+@Scripts.Render("~/Scripts/dataTables.bootstrap4.min.js")
+
+
+<style>
+    /*タイトル*/
+    .title {
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
+
+
+    /*検索BOX*/
+    .search-box input[type="text"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid #D6D6D6;
+    }
+
+
+
+    /*リンク*/
+    .link {
+        font-size: 20px;
+    }
+
+
+    /*jQueryのフィルター非表示*/
+    .dataTables_filter, .dataTables_info {
+        display: none;
+    }
+</style>
+
+<script>
+    function MoveToAddUser() {
+        location.href = location.protocol + "//" + location.host + "/Record/Create";
+    }
+
+    function MoveToDeleteUser(e) {
+        var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Record/Detail";
+    }
+
+    //jQueryの設定
+    $(document).ready(function () {
+        var test = $('#myTable')[0];
+        $('#myTable').DataTable({
+            pageLength: 10  // １ページあたりの行数(デフォルト：10)
+            , lengthChange: false
+        });
+    });
+
+
+    function MoveToChartDetail(e) {
+        var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Record/Detail?id=" + id;
+    }
+</script>
+
+<center>
+    <div class="title">
+        <h2>カルテ検索・作成</h2>
+    </div>
+</center>
+
+<!--検索-->
+<form action="Search">
+    <center>
+        <div class="search-box">
+            <input name="patientid" type="text" id="search-text1" placeholder="患者IDを入力">
+            <input name="patientname" type="text" id="search-text2" placeholder="氏名を入力">
+            <input name="date" type="date" placeholder="受診日を入力">
+            <button class="btnDefault sysBaseColor" type="submit" style="margin-left: 30px">検索</button>
+        </div>
+    </center>
+</form>
+
+
+
+<!--テーブル-->
+<div>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th scope="row"></th>
+                <th>カルテID</th>
+                <th>受診日</th>
+                @*<th>医師名</th>*@
+                <th>患者ID</th>
+                @*<th>患者名</th>*@
+                <th>病名</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chart in Model.Chart)
+            {
+                <tr>
+                    <td><button class="btnDefault sysBaseColor" onclick="MoveToChartDetail(this)" value="@chart.ID">閲覧</button></td>
+                    <td>@chart.ID</td>
+                    <td>@chart.YMD</td>
+                    @*<td>@doctor.NAME</td>*@
+                    <td>@chart.PATIENT_ID</td>
+                    @*<td>@patient.NAME</td>*@
+                    <td>@chart.DISEASENAME</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+<!--リンク-->
+<div class="link">
+    <a href="Create">作成はこちら</a>
+</div>

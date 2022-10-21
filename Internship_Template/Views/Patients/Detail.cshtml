@@ -1,0 +1,169 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+
+@model Internship_Template.Models.VM.患者一覧画面
+
+@{
+    ViewBag.Title = "Profile";
+}
+@Styles.Render("~/Content/common")
+
+<script>
+    function HistoryBack(e) {
+        var value = e.value;
+        var url;
+        if (value == "1") {
+            url = location.protocol + "//" + location.host;
+        }
+        else {
+            url = location.protocol + "//" + location.host + "/Patients/Index";
+        }
+        location.href = url;
+
+    }
+
+    function MoveToEditPatient(id) {
+        //var id = e.value;
+        location.href = location.protocol + "//" + location.host + "/Patients/Edit?id=" + id;
+    }
+    
+</script>
+
+<style>
+
+    .txtDisp {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .s200.avatar {
+        width: 200px;
+        height: 200px;
+        margin-right: 10px;
+    }
+
+</style>
+
+<div id="content" class="topSpace">
+    <div>
+        
+    </div>
+
+    @using (Html.BeginForm("Edit", "Patients"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="profileContent">
+            <div class="card profileCard">
+                <div class="card-header text-white sysBaseColor">
+                    <i class="">
+                    患者情報
+                    </i>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-6 pb-4 size20">
+                                <div class="row">
+                                    <label class="itemLabel">ID</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.ID</label>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">名前</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.NAME</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">生年月日</label>
+                                    <div class="form-group ">
+                                        @{ 
+                                            string dbirthday = string.Empty;
+                                            if (Model.TargetPatient.BIRTHDAY != null)
+                                            {
+                                                dbirthday = ((DateTime)Model.TargetPatient.BIRTHDAY).ToString("yyyy/MM/dd");
+                                            }
+
+                                            }
+                                        <label>@dbirthday</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">性別</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.GENDER</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">年齢</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.AGE</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">血液型</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.BLOODTYPE</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="itemLabel">住所</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.ADDRESS</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">電話番号</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.TEL</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">アレルギー</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.ALLERGY</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">病歴</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.MEDICALHISTORY</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="itemLabel">妊娠有無</label>
+                                    <div class="form-group ">
+                                        <label>@Model.TargetPatient.PREGNANCY</label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+                <div>
+                    <div class="buttonContent">
+                            <button type="button" class="btn btnDefault sysBaseColor profileButton" onclick="MoveToEditPatient('@Model.TargetPatient.ID')" value="">
+                                <i class="fas fa-pen-alt">
+                                    編集
+                                </i>
+                            </button>
+
+                    </div>
+                </div>
+            </div>
+    }
+</div>
+

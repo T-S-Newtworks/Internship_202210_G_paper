@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e910cdc1334b4d299ca810a2ac3e2c96" Name="Diagram1">
+        <EntityTypeShape EntityType="DP_dbContext.T_CHART" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.T_DEPARTMENT" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.T_DOCTOR" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.T_HOSPITAL" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.T_KENGEN" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.T_PATIENT" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DP_dbContext.USER" Width="1.5" PointX="3.375" PointY="6.75" />
+        <AssociationConnector Association="DP_dbContext.T_DEPARTMENTT_HOSPITAL" />
+        <AssociationConnector Association="DP_dbContext.T_HOSPITALT_DOCTOR" />
+        <AssociationConnector Association="DP_dbContext.T_HOSPITALUSER" />
+        <AssociationConnector Association="DP_dbContext.T_KENGENUSER" />
+        <AssociationConnector Association="DP_dbContext.T_DOCTORT_DEPARTMENT" />
+        <AssociationConnector Association="DP_dbContext.T_CHARTT_DOCTOR" />
+        <AssociationConnector Association="DP_dbContext.T_CHARTT_PATIENT" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

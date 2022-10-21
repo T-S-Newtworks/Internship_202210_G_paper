@@ -1,0 +1,81 @@
+﻿@using Internship_Template.Models
+@using Internship_Template.Common
+@model Internship_Template.Models.VM.TOP画面
+
+@{
+    ViewBag.Title = "index";
+}
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/common")
+
+
+<style>
+
+    /*小テキストボックス*/
+    .sbox input[type="text"] {
+        margin-top: 10px;
+        margin-left: 40px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid #D6D6D6;
+    }
+
+
+    /*中テキストボックス*/
+    .mbox input[type="text"] {
+        margin-top: 30px;
+        padding: 20px 40px;
+        font-size: 16px;
+        border: 1px solid #D6D6D6;
+    }
+
+    /*大テキストボックス*/
+    .bbox input[type="text"] {
+        padding: 270px 600px;
+        font-size: 16px;
+        border: 1px solid #D6D6D6;
+    }
+</style>
+
+<script>
+    function MoveToAddUser() {
+        location.href = location.protocol + "//" + location.host + "/Record/Index";
+    }
+
+</script>
+
+
+<div>
+    <form>
+        <!--プロフィール-->
+        <div class="sbox">
+            <input type="text" id="" placeholder="病院IDを入力">
+            <input type="text" id="" placeholder="受診日時を入力"><br>
+            <input type="text" id="" placeholder="患者IDを入力">
+            <input type="text" id="" placeholder="患者名を入力">
+            <input type="text" id="" placeholder="担当医を入力">
+        </div>
+        <center>
+            <div class="mbox">
+                <!--概要-->
+                <input type="text" id="" placeholder="病名を入力">
+                <input type="text" id="" placeholder="症状を入力">
+                <input type="text" id="" placeholder="該当部位を入力">
+                <input type="text" id="" placeholder="診察料を入力">
+            </div>
+
+            <div class="bbox">
+                <!--詳細-->
+                <input type="text" id="" placeholder="診察内容・結果を入力">
+                <br><button>確定</button>
+            </div>
+        </center>
+
+    </form>
+</div>
